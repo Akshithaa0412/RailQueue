@@ -9,15 +9,16 @@
   /* ── Indian Railways Government Portal Palette ── */
 
   /* Backgrounds — deep navy, like the railway logo */
-  --bg-deep:    #071526;
+  --bg-deep: #071526;
   --bg-surface: #0b1e36;
-  --bg-card:    #0f2541;
+  --bg-card: #0f2541;
   --bg-card-hover: #142d4e;
   --bg-elevated: #1a3560;
 
   /* Primary — Indian Railways Saffron / Orange */
   --amber-300: #fcd09a;
-  --amber-400: #f47920;   /* IR official saffron */
+  --amber-400: #f47920;
+  /* IR official saffron */
   --amber-500: #d96310;
   --amber-600: #b84f08;
   --amber-glow: rgba(244, 121, 32, 0.25);
@@ -42,22 +43,22 @@
   --crimson-subtle: rgba(216, 64, 64, 0.10);
 
   /* Text Hierarchy — high contrast for readability */
-  --text-primary:   #f0f6ff;
+  --text-primary: #f0f6ff;
   --text-secondary: #b8cce0;
-  --text-muted:     #6b8aab;
-  --text-dim:       #4a6580;
+  --text-muted: #6b8aab;
+  --text-dim: #4a6580;
 
   /* Borders — subtle on navy */
-  --border-glass:       rgba(255, 255, 255, 0.10);
+  --border-glass: rgba(255, 255, 255, 0.10);
   --border-glass-hover: rgba(255, 255, 255, 0.22);
-  --border-accent:      rgba(244, 121, 32, 0.40);
-  --border-emerald:     rgba(26, 173, 114, 0.40);
+  --border-accent: rgba(244, 121, 32, 0.40);
+  --border-emerald: rgba(26, 173, 114, 0.40);
 
   /* Typography — clean, accessible */
   --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
   --font-heading: "Plus Jakarta Sans", "Inter", sans-serif;
-  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:    "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
 
   /* Geometry — slightly reduced rounding for a formal look */
   --radius-sm: 6px;
@@ -78,7 +79,9 @@
    GLOBAL RESET & BASE STYLES
    ========================================================= */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -119,13 +122,16 @@ body::before {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-deep);
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--amber-500);
 }
@@ -145,7 +151,10 @@ img {
   display: block;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font: inherit;
   color: inherit;
 }
@@ -218,7 +227,7 @@ a {
   z-index: 90;
   background: #071f3d;
   border-bottom: 3px solid var(--amber-400);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   transition: box-shadow 0.2s;
 }
 
@@ -274,8 +283,14 @@ a {
 }
 
 @keyframes shine {
-  0% { transform: translateY(-100%); }
-  20%, 100% { transform: translateY(100%); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  20%,
+  100% {
+    transform: translateY(100%);
+  }
 }
 
 /* System Live Pulse Tag in Nav */
@@ -303,8 +318,17 @@ a {
 }
 
 @keyframes pulse-beacon {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
 }
 
 /* Nav Links */
@@ -425,7 +449,8 @@ a {
 
 .hero {
   position: relative;
-  padding: 64px 0 0;        /* remove bottom padding — train strip fills it */
+  padding: 64px 0 0;
+  /* remove bottom padding — train strip fills it */
   border-bottom: 1px solid var(--border-glass);
   overflow: hidden;
 }
@@ -448,7 +473,8 @@ a {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding-top: 48px;          /* breathing room above the track */
+  padding-top: 48px;
+  /* breathing room above the track */
   background: transparent;
 }
 
@@ -464,6 +490,7 @@ a {
     opacity: 0;
     transform: translateX(-120px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -777,7 +804,7 @@ a {
   align-items: baseline;
 }
 
-.section-intro > span {
+.section-intro>span {
   color: var(--amber-400);
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -918,6 +945,18 @@ a {
   gap: 12px;
 }
 
+.route-selector-wrap label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.route-selector-wrap input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .btn-swap-stations {
   height: 48px;
   width: 44px;
@@ -982,14 +1021,15 @@ label {
   gap: 8px;
 }
 
-label > span {
+label>span {
   color: var(--text-secondary);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   min-height: 48px;
   padding: 11px 14px;
@@ -1307,7 +1347,7 @@ select option {
   margin-bottom: 20px;
 }
 
-.result-board-grid > div {
+.result-board-grid>div {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
@@ -1533,8 +1573,15 @@ select option {
 }
 
 @keyframes pulse-border {
-  0%, 100% { border-color: rgba(239, 68, 68, 0.3); }
-  50% { border-color: rgba(239, 68, 68, 0.8); }
+
+  0%,
+  100% {
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  50% {
+    border-color: rgba(239, 68, 68, 0.8);
+  }
 }
 
 .btn-item-action {
@@ -1754,8 +1801,15 @@ select option {
 }
 
 @keyframes slide-up-toast {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* =========================================================
@@ -1763,16 +1817,17 @@ select option {
    ========================================================= */
 
 @media (max-width: 1024px) {
+
   .hero-grid,
   .section-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .section-heading {
     position: static;
   }
-  
+
   .final-cta-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -1784,36 +1839,36 @@ select option {
     flex-wrap: wrap;
     padding: 12px 0;
   }
-  
+
   .nav {
     display: none;
   }
-  
+
   .form-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .inline-form {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .board-telemetry-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .queue-board {
     grid-template-columns: 1fr;
   }
-  
+
   .result-board-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .boarding-pass-body {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .footer-grid {
     flex-direction: column;
     gap: 10px;
