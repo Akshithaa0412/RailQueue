@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="RailQueue — an independent concept prototype for a fairer and more transparent Tatkal booking experience."
+  >
+
+  <title>RailQueue — Fairer Tatkal Experience</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =====================================================
+       TOP NOTICE & DISCLAIMER BAR
+       ===================================================== -->
+
+  <div class="disclaimer">
+    <span class="disclaimer-badge">CONCEPT DEMO</span>
+    <span>Independent Prototype · All journeys, inventory & payment states are synthetic · Not affiliated with IRCTC or Indian Railways</span>
+  </div>
+
+
+  <!-- =====================================================
+       HEADER & NAVIGATION
+       ===================================================== -->
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+
+      <a class="brand" href="#top" aria-label="RailQueue Home">
+        <span class="brand-mark">RQ</span>
+        <span>Rail<span>Queue</span></span>
+      </a>
+
+      <div class="header-system-tag">
+        <span class="pulse-dot"></span>
+        <span>PROTOCOL v2.6 • LIVE</span>
+      </div>
+
+      <nav class="nav" aria-label="Module Navigation">
+        <a href="#readiness"><span class="nav-num">01</span> Readiness</a>
+        <a href="#pnr"><span class="nav-num">02</span> PNR Check</a>
+        <a href="#payment"><span class="nav-num">03</span> Payment Net</a>
+        <a href="#refunds"><span class="nav-num">04</span> Refunds</a>
+        <a href="#grievance"><span class="nav-num">05</span> Grievance</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- 1-Click Guided Demo Button for Reviewers -->
+        <button id="btnDemoTour" class="btn-demo-tour" type="button" title="Run 1-Click Guided Demo">
+          ⚡ <span>Demo Tour</span>
+        </button>
+
+        <!-- Language Selector — Dropdown -->
+        <div class="language-select-wrap" aria-label="Language selection">
+          <label for="langSelect">🌐</label>
+          <select id="langSelect" class="lang-select" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+            <option value="ml">മലയാളം</option>
+            <option value="kn">ಕನ್ನಡ</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+
+  <main id="top">
+
+    <!-- =====================================================
+         HERO SECTION
+         ===================================================== -->
+
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">
+            INDEPENDENT RAIL EXPERIENCE LAYER
+          </p>
+
+          <h1 data-i18n="heroTitle">
+            Tatkal should feel like a <span class="gradient-text">queue</span>, not a lottery.
+          </h1>
+
+          <p class="hero-sub" data-i18n="heroSub">
+            RailQueue makes the journey more transparent with visible queue
+            position, deterministic mock PNR checks, payment evidence,
+            refund tracking and correctly routed grievances.
+          </p>
+
+          <div class="hero-cta-group">
+            <a class="btn btn-primary" href="#readiness" data-i18n="heroCta">
+              Check Tatkal readiness →
+            </a>
+            <a class="btn btn-secondary" href="#pnr">
+              Verify Mock PNR
+            </a>
+          </div>
+
+          <p class="micro-note" data-i18n="heroNote">
+            <span>🔒</span> Prototype only. No real bookings, payments, OTPs or personal data.
+          </p>
+        </div>
+
+
+        <!-- SIMULATED DEPARTURE & QUEUE HUD BOARD -->
+        <div class="hero-board">
+
+          <div class="board-top">
+            <span data-i18n="boardLabel">SIMULATED LIVE TELEMETRY</span>
+            <span class="signal">
+              <i></i>
+              <span data-i18n="boardLive">DEMO LIVE</span>
+            </span>
+          </div>
+
+          <!-- Telemetry 3-Grid -->
+          <div class="board-telemetry-grid">
+            <div class="board-telemetry-cell">
+              <span class="board-label">QUEUE SLOT</span>
+              <strong id="heroQueue" class="mono">--</strong>
+            </div>
+
+            <div class="board-telemetry-cell">
+              <span class="board-label">GATEWAY STATUS</span>
+              <strong id="heroStatus" class="mono">READY</strong>
+            </div>
+
+            <div class="board-telemetry-cell">
+              <span class="board-label">EST. WAIT</span>
+              <strong id="heroWait" class="mono">-- MIN</strong>
+            </div>
+          </div>
+
+          <!-- Live Train Ticker Schedule -->
+          <div class="board-ticker">
+            <div class="ticker-item">
+              <span class="ticker-train">12951 NDLS TEJAS</span>
+              <span class="ticker-route">NDLS ➔ MMCT</span>
+              <span class="ticker-badge">AC TATKAL</span>
+            </div>
+            <div class="ticker-item">
+              <span class="ticker-train">20607 VANDE BHARAT</span>
+              <span class="ticker-route">MAS ➔ SBC</span>
+              <span class="ticker-badge">QUEUE ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="board-footer mono">
+            <span>CONSENSUS: DETERMINISTIC HASH</span>
+            <span>RQ / SYNTHETIC / 2026</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         INTRO SECTION
+         ===================================================== -->
+
+    <div class="container section-intro">
+      <span>01—05</span>
+      <p data-i18n="pageIntro">
+        Five small experience layers designed around one principle:
+        show the user what is happening.
+      </p>
+    </div>
+
+
+
+    <!-- =====================================================
+         01 — TATKAL READINESS ASSISTANT
+         ===================================================== -->
+
+    <section id="readiness" class="feature-section">
+      <div class="container section-grid">
+
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <div>
+            <p class="eyebrow" data-i18n="readinessEyebrow">
+              TATKAL READINESS ASSISTANT
+            </p>
+            <h2 data-i18n="readinessTitle">
+              Know when the window opens. Know where you stand.
+            </h2>
+            <p data-i18n="readinessDesc">
+              Prepare your trip before the simulated Tatkal window opens.
+              Once the countdown reaches zero, enter a visible synthetic
+              queue instead of an opaque pass/fail flow.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <span>🚆</span> Trip Readiness & Queue Setup
+            </div>
+            <span class="header-system-tag">SIMULATED 10:00 AM AC WINDOW</span>
+          </div>
+
+          <form id="readinessForm" class="form-grid">
+
+            <label>
+              <span data-i18n="passengerName">Passenger name</span>
+              <input id="passengerName" type="text" placeholder="Aarav Sharma" value="Aarav Sharma" required>
+            </label>
+
+            <!-- Station Route Selector with Swap Button -->
+            <div class="route-selector-wrap">
+              <label>
+                <span data-i18n="fromStation">From station</span>
+                <input id="fromStation" type="text" placeholder="Chennai (MAS)" value="Chennai (MAS)" required>
+              </label>
+
+              <button id="btnSwapStations" class="btn-swap-stations" type="button" title="Swap From and To stations">
+                ⇄
+              </button>
+
+              <label>
+                <span data-i18n="toStation">To station</span>
+                <input id="toStation" type="text" placeholder="Bengaluru (SBC)" value="Bengaluru (SBC)" required>
+              </label>
+            </div>
+
+            <!-- Quick Station Route Chips -->
+            <div class="sample-chips" style="grid-column: 1 / -1; margin-top: -6px;">
+              <span class="sample-chip-label">Quick Routes:</span>
+              <button type="button" class="sample-chip" onclick="setStations('Chennai (MAS)', 'Bengaluru (SBC)')">MAS ⇄ SBC</button>
+              <button type="button" class="sample-chip" onclick="setStations('New Delhi (NDLS)', 'Varanasi (BSB)')">NDLS ⇄ BSB</button>
+              <button type="button" class="sample-chip" onclick="setStations('Mumbai (CSMT)', 'Pune (PUNE)')">CSMT ⇄ PUNE</button>
+              <button type="button" class="sample-chip" onclick="setStations('Howrah (HWH)', 'New Delhi (NDLS)')">HWH ⇄ NDLS</button>
+            </div>
+
+            <label>
+              <span data-i18n="travelDate">Travel date</span>
+              <input id="travelDate" type="date" required>
+            </label>
+
+            <!-- Seat Class Selector -->
+            <div class="class-selector-wrap">
+              <label><span>Booking Class</span></label>
+              <div class="class-pills">
+                <button type="button" class="class-pill active" data-class="3A">3A (AC 3 Tier)</button>
+                <button type="button" class="class-pill" data-class="2A">2A (AC 2 Tier)</button>
+                <button type="button" class="class-pill" data-class="1A">1A (First AC)</button>
+                <button type="button" class="class-pill" data-class="CC">CC (AC Chair)</button>
+                <button type="button" class="class-pill" data-class="SL">SL (Sleeper)</button>
+              </div>
+            </div>
+
+            <button class="btn btn-primary full" type="submit" data-i18n="startCountdown">
+              Start simulated countdown
+            </button>
+
+          </form>
+
+
+          <!-- Simulation Countdown & Queue Pipeline -->
+          <div id="readinessPanel" class="simulation-panel hidden">
+
+            <div class="countdown-wrap">
+              <span class="eyebrow" data-i18n="windowOpens">
+                SIMULATED WINDOW OPENS IN
+              </span>
+              <strong id="countdown" class="countdown mono">
+                00:15
+              </strong>
+            </div>
+
+            <div class="route-line">
+              <span id="routeFrom">MAS</span>
+              <span class="route-arrow">➔</span>
+              <span id="routeTo">SBC</span>
+              <span style="color: var(--amber-400); margin-left: 8px;">• CLASS: <span id="selectedClassBadge">3A</span></span>
+            </div>
+
+            <button id="queueBtn" class="btn btn-primary full" type="button" disabled data-i18n="enterQueue">
+              Enter the simulated queue
+            </button>
+
+            <!-- Dynamic Animated Queue Pipeline Track -->
+            <div id="queueTrackContainer" class="queue-track-container hidden">
+              <div class="queue-track-label">
+                <span>QUEUE DISPATCH PIPELINE</span>
+                <span id="queueProgressPct">0%</span>
+              </div>
+              <div class="queue-track-rail">
+                <div id="queueTrackFill" class="queue-track-fill"></div>
+              </div>
+            </div>
+
+            <!-- Queue Outcome Board -->
+            <div id="queueBoard" class="queue-board hidden">
+
+              <div class="queue-big">
+                <span data-i18n="yourPosition">YOUR QUEUE POSITION</span>
+                <strong id="queuePosition" class="mono">--</strong>
+              </div>
+
+              <div class="queue-stat">
+                <span data-i18n="estimatedWait">EST. WAIT</span>
+                <strong id="estimatedWait" class="mono">--</strong>
+              </div>
+
+              <div class="queue-stat">
+                <span data-i18n="queueState">QUEUE STATE</span>
+                <strong id="queueState" class="mono">ENTERED</strong>
+              </div>
+
+              <p id="queueExplanation" class="status-copy"></p>
+
+              <!-- Digital Boarding Pass Preview -->
+              <div id="boardingPassPreview" class="boarding-pass-preview hidden">
+                <div class="boarding-pass-header">
+                  <span>INDIAN RAILWAYS • SYNTHETIC E-TICKET</span>
+                  <span id="passPnrCode" class="mono">PNR: 8492019482</span>
+                </div>
+                <div class="boarding-pass-body">
+                  <div class="pass-field">
+                    <span>PASSENGER</span>
+                    <strong id="passPassengerName">Aarav Sharma</strong>
+                  </div>
+                  <div class="pass-field">
+                    <span>TRAIN NO</span>
+                    <strong>12007 SHATABDI</strong>
+                  </div>
+                  <div class="pass-field">
+                    <span>STATUS</span>
+                    <strong id="passOutcomeStatus" class="cnf">CONFIRMED</strong>
+                  </div>
+                  <div class="pass-field">
+                    <span>COACH / BERTH</span>
+                    <strong id="passSeatBadge">B4 / 23 (LB)</strong>
+                  </div>
+                </div>
+                <div class="boarding-pass-footer">
+                  <span class="barcode-stub">|||| | | ||||| | || ||||| |</span>
+                  <span class="mono" style="font-size: 0.65rem; color: var(--emerald-400);">✓ CRYPTOGRAPHICALLY SECURED MOCK TICKET</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="card-footnote" data-i18n="queueNote">
+            Mock fairness logic: one synthetic position is assigned from
+            1–40, then the outcome is determined deterministically by that position.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         02 — PNR STATUS CHECKER & COACH SCHEMATIC
+         ===================================================== -->
+
+    <section id="pnr" class="feature-section alt">
+      <div class="container section-grid">
+
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <div>
+            <p class="eyebrow" data-i18n="pnrEyebrow">
+              PNR STATUS CHECKER
+            </p>
+            <h2 data-i18n="pnrTitle">
+              A status view independent of booking-site uptime.
+            </h2>
+            <p data-i18n="pnrDesc">
+              Enter any 10-digit mock PNR. The same PNR always returns
+              the same synthetic result, making the demo reproducible for judges.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <span>🔍</span> Deterministic Status Decoder
+            </div>
+            <span class="header-system-tag">DECODER ACTIVE</span>
+          </div>
+
+          <form id="pnrForm" class="inline-form">
+
+            <label class="grow">
+              <span data-i18n="pnrLabel">10-digit PNR</span>
+              <input
+                id="pnrInput"
+                inputmode="numeric"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                placeholder="4528193041"
+                value="4528193041"
+                required
+              >
+            </label>
+
+            <button class="btn btn-primary" type="submit" data-i18n="checkPnr">
+              Check mock PNR
+            </button>
+
+          </form>
+
+          <!-- Quick Test Sample PNR Buttons for Judges -->
+          <div class="sample-chips">
+            <span class="sample-chip-label">Try Deterministic Tests:</span>
+            <button type="button" class="sample-chip" onclick="testSamplePnr('4528193041')">4528193041 (Confirmed)</button>
+            <button type="button" class="sample-chip" onclick="testSamplePnr('8201948271')">8201948271 (RAC)</button>
+            <button type="button" class="sample-chip" onclick="testSamplePnr('1948201928')">1948201928 (Waitlist)</button>
+          </div>
+
+
+          <!-- Result Board -->
+          <div id="pnrResult" class="result-board hidden">
+
+            <div class="result-board-grid">
+              <div>
+                <span class="eyebrow">SYNTHETIC PNR</span>
+                <strong id="resultPnr" class="mono">----------</strong>
+              </div>
+
+              <div>
+                <span class="eyebrow">STATUS</span>
+                <strong id="pnrStatus" class="mono status-green">CONFIRMED</strong>
+              </div>
+
+              <div>
+                <span class="eyebrow">DETAIL</span>
+                <strong id="pnrDetail" class="mono">S2 / 42</strong>
+              </div>
+            </div>
+
+            <!-- Train Coach Schematic Visualizer -->
+            <div id="pnrCoachSchematic" class="coach-schematic">
+              <div class="coach-schematic-title">
+                <span>TRAIN COMPOSITION & SEAT LOCATION SCHEMATIC</span>
+                <span class="mono" style="color: var(--emerald-400);">CHART PREPARED</span>
+              </div>
+              <div class="coach-train-line" id="coachTrainLine">
+                <div class="coach-box engine">⚡ ENG</div>
+                <div class="coach-box">D1</div>
+                <div class="coach-box">S1</div>
+                <div class="coach-box your-coach" id="userCoachBox">S2</div>
+                <div class="coach-box">S3</div>
+                <div class="coach-box">B1</div>
+                <div class="coach-box">B2</div>
+                <div class="coach-box">SLR</div>
+              </div>
+            </div>
+
+            <div class="info-strip">
+              <strong data-i18n="productionNoteTitle">Production note</strong>
+              <span data-i18n="productionNote">
+                A real implementation would query NTES or another
+                authorised/public rail data source. This prototype
+                never contacts a rail booking system.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         03 — PAYMENT FAILURE SAFETY NET
+         ===================================================== -->
+
+    <section id="payment" class="feature-section">
+      <div class="container section-grid">
+
+        <div class="section-heading">
+          <span class="section-number">03</span>
+          <div>
+            <p class="eyebrow" data-i18n="paymentEyebrow">
+              PAYMENT FAILURE SAFETY NET
+            </p>
+            <h2 data-i18n="paymentTitle">
+              Turn a failed payment into organised evidence.
+            </h2>
+            <p data-i18n="paymentDesc">
+              Log the transaction/UTR and amount locally so a user
+              has a clear record when raising a refund dispute.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <span>💳</span> Dispute Ledger & Proof Vault
+            </div>
+            <button id="btnSamplePayment" class="btn-item-action" type="button">
+              ⚡ Fill Sample Failure
+            </button>
+          </div>
+
+          <form id="paymentForm" class="form-grid">
+
+            <div class="gateway-selector">
+              <label><span>Payment Gateway / Provider</span></label>
+              <div class="gateway-pills">
+                <button type="button" class="gateway-pill active" data-gw="UPI (GPay)">UPI (Google Pay)</button>
+                <button type="button" class="gateway-pill" data-gw="UPI (PhonePe)">UPI (PhonePe)</button>
+                <button type="button" class="gateway-pill" data-gw="SBI NetBanking">SBI NetBanking</button>
+                <button type="button" class="gateway-pill" data-gw="HDFC Gateway">HDFC Gateway</button>
+                <button type="button" class="gateway-pill" data-gw="RuPay Card">RuPay Card</button>
+              </div>
+            </div>
+
+            <label>
+              <span data-i18n="utrLabel">Transaction / UTR ID</span>
+              <input id="utrInput" type="text" maxlength="40" placeholder="UTR-2026-89410294" required>
+            </label>
+
+            <label>
+              <span data-i18n="amountLabel">Amount (₹)</span>
+              <input id="amountInput" type="number" min="1" step="0.01" placeholder="850" required>
+            </label>
+
+            <button class="btn btn-primary full" type="submit" data-i18n="logTransaction">
+              Log failed transaction
+            </button>
+
+          </form>
+
+
+          <div id="paymentList" class="item-list empty-state" data-i18n="noTransactions">
+            No synthetic transactions logged yet.
+          </div>
+
+          <p class="card-footnote" data-i18n="localStorageNote">
+            Stored only in this browser using localStorage.
+            No payment provider is contacted.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         04 — REFUND TRACKER & SLA ESCALATION
+         ===================================================== -->
+
+    <section id="refunds" class="feature-section alt">
+      <div class="container section-grid">
+
+        <div class="section-heading">
+          <span class="section-number">04</span>
+          <div>
+            <p class="eyebrow" data-i18n="refundEyebrow">
+              REFUND TRACKER
+            </p>
+            <h2 data-i18n="refundTitle">
+              Know how long your refund has been waiting.
+            </h2>
+            <p data-i18n="refundDesc">
+              Track a cancellation date locally. After seven days,
+              the prototype flags the case for escalation.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <span>⏱️</span> Cancellation SLA Monitor
+            </div>
+            <button id="btnSampleRefund" class="btn-item-action" type="button">
+              ⚡ Inject 10-Day Overdue Refund
+            </button>
+          </div>
+
+          <form id="refundForm" class="inline-form">
+
+            <label class="grow">
+              <span data-i18n="refundPnrLabel">PNR</span>
+              <input id="refundPnr" type="text" maxlength="10" placeholder="1234567890" required>
+            </label>
+
+            <label class="grow">
+              <span data-i18n="cancelDateLabel">Cancellation date</span>
+              <input id="cancelDate" type="date" required>
+            </label>
+
+            <button class="btn btn-primary" type="submit" data-i18n="trackRefund">
+              Track refund
+            </button>
+
+          </form>
+
+          <!-- 7-Day Refund SLA Visual Stepper -->
+          <div class="refund-timeline-box">
+            <div class="sample-chip-label">IRCTC / BANK SLA TIMELINE GUIDELINE:</div>
+            <div class="sla-timeline-stepper">
+              <div class="sla-step">
+                <span class="step-title">DAYS 1–3</span>
+                <strong>Rail System Initiated</strong>
+              </div>
+              <div class="sla-step active">
+                <span class="step-title">DAYS 4–7</span>
+                <strong>Bank / NPCI Processing</strong>
+              </div>
+              <div class="sla-step danger">
+                <span class="step-title">DAY 7+</span>
+                <strong>SLA Breach → Escalate</strong>
+              </div>
+            </div>
+          </div>
+
+
+          <div id="refundList" class="item-list empty-state" data-i18n="noRefunds">
+            No synthetic refunds being tracked yet.
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         05 — ONE-TAP GRIEVANCE FILER
+         ===================================================== -->
+
+    <section id="grievance" class="feature-section">
+      <div class="container section-grid">
+
+        <div class="section-heading">
+          <span class="section-number">05</span>
+          <div>
+            <p class="eyebrow" data-i18n="grievanceEyebrow">
+              ONE-TAP GRIEVANCE FILER
+            </p>
+            <h2 data-i18n="grievanceTitle">
+              Point the problem at the right support channel.
+            </h2>
+            <p data-i18n="grievanceDesc">
+              Generate a synthetic complaint ID and show the channel
+              that would be appropriate in a production workflow.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header-bar">
+            <div class="card-header-title">
+              <span>📋</span> Fast-Track Dispute Routing
+            </div>
+            <span class="header-system-tag">AUTO-ROUTER READY</span>
+          </div>
+
+          <form id="grievanceForm" class="form-grid">
+
+            <label>
+              <span data-i18n="issueLabel">Issue category</span>
+              <select id="issueCategory">
+                <option value="payment" data-i18n="issuePayment">
+                  Payment deducted / no ticket
+                </option>
+                <option value="refund" data-i18n="issueRefund">
+                  Refund delayed (> 7 days)
+                </option>
+                <option value="login" data-i18n="issueLogin">
+                  Login issue / session timeout
+                </option>
+                <option value="other" data-i18n="issueOther">
+                  Other / Service Feedback
+                </option>
+              </select>
+            </label>
+
+            <label>
+              <span data-i18n="optionalPnr">PNR (optional)</span>
+              <input id="grievancePnr" type="text" maxlength="10" placeholder="1234567890">
+            </label>
+
+            <button class="btn btn-primary full" type="submit" data-i18n="fileGrievance">
+              Generate mock grievance
+            </button>
+
+          </form>
+
+
+          <div id="grievanceResult" class="grievance-result hidden">
+
+            <div class="complaint-id">
+              <div>
+                <span class="eyebrow" data-i18n="complaintId">MOCK COMPLAINT ID</span>
+                <strong id="complaintId" class="mono">RQ-000000</strong>
+              </div>
+              <span class="signal"><i></i> <span class="mono" style="font-size: 0.72rem;">REGISTERED</span></span>
+            </div>
+
+            <div>
+              <span class="eyebrow" data-i18n="wouldRoute">WOULD ROUTE TO</span>
+              <strong id="routeChannel">RailMadad</strong>
+            </div>
+
+            <p id="grievanceCopy"></p>
+
+            <div class="grievance-actions">
+              <button id="btnCopyComplaint" class="btn-item-action" type="button">
+                📋 Copy Complaint ID
+              </button>
+              <button id="btnCopyTweet" class="btn-item-action" type="button">
+                🐦 Copy Template for @RailMinIndia
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL CTA
+         ===================================================== -->
+
+    <section class="final-cta">
+      <div class="container final-cta-inner">
+
+        <div>
+          <p class="eyebrow">
+            RAILQUEUE / CONCEPT PROTOTYPE
+          </p>
+          <h2 data-i18n="finalTitle">
+            Transparency is a product feature.
+          </h2>
+          <p data-i18n="finalDesc">
+            Every state shown here is synthetic, but the design
+            principle is real: explain what happened and what
+            the user can do next.
+          </p>
+        </div>
+
+        <a class="btn btn-secondary" href="#top" data-i18n="backTop">
+          Back to top ↑
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <span>
+        RailQueue © 2026 · Independent concept prototype for Indian Railways Tatkal
+      </span>
+      <span>
+        Mock data only · Not affiliated with IRCTC or CRIS
+      </span>
+    </div>
+  </footer>
+
+  <!-- Toast Notification System -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

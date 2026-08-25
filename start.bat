@@ -1,0 +1,3 @@
+@echo off
+echo Launching RailQueue...
+start "" "%~dp0index.html"
